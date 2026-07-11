@@ -1,0 +1,785 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KD Software Labs | Admin Hub</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        /* Custom Admin styles extending style.css */
+        .admin-body {
+            background-color: var(--bg-dark);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+
+        .admin-dashboard-layout {
+            display: none;
+            width: 100%;
+            max-width: 1200px;
+            margin: 6rem auto 2rem;
+        }
+
+        .login-card {
+            width: 100%;
+            max-width: 420px;
+            padding: 3rem 2.5rem;
+            text-align: center;
+            animation: slide-in 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        .login-card h2 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+            color: #fff;
+        }
+
+        .login-card p {
+            color: var(--text-muted);
+            margin-bottom: 2.5rem;
+            font-size: 0.95rem;
+        }
+
+        .admin-stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .stat-card {
+            padding: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .stat-card-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            background: rgba(139, 92, 246, 0.1);
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+
+        .stat-card:nth-child(2) .stat-card-icon {
+            background: rgba(6, 182, 212, 0.1);
+            color: var(--secondary);
+        }
+        .stat-card:nth-child(3) .stat-card-icon {
+            background: rgba(236, 72, 153, 0.1);
+            color: var(--accent);
+        }
+
+        .stat-card-info h3 {
+            font-size: 1.8rem;
+            color: #fff;
+            line-height: 1.2;
+        }
+
+        .stat-card-info p {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        /* Submissions Management List */
+        .admin-content-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 2rem;
+        }
+
+        @media (max-width: 992px) {
+            .admin-content-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .submissions-panel {
+            padding: 2.5rem;
+            min-height: 400px;
+        }
+
+        .panel-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 1rem;
+        }
+
+        .panel-header h2 {
+            font-size: 1.5rem;
+            color: #fff;
+        }
+
+        .inquiries-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .inquiry-card {
+            padding: 1.75rem;
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            background: rgba(7, 10, 19, 0.3);
+            transition: var(--transition-smooth);
+        }
+
+        .inquiry-card:hover {
+            border-color: rgba(139, 92, 246, 0.25);
+            background: rgba(7, 10, 19, 0.5);
+        }
+
+        .inquiry-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+        }
+
+        .inquiry-client-info h4 {
+            font-size: 1.15rem;
+            color: #fff;
+        }
+
+        .inquiry-client-info p {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        .inquiry-meta {
+            text-align: right;
+        }
+
+        .inquiry-budget {
+            color: var(--secondary);
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+
+        .inquiry-date {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+
+        .inquiry-badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .inquiry-badge {
+            font-size: 0.75rem;
+            font-weight: 600;
+            padding: 0.2rem 0.6rem;
+            border-radius: 50px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border-color);
+            color: var(--text-muted);
+        }
+
+        .inquiry-badge.type {
+            background: rgba(139, 92, 246, 0.1);
+            border-color: rgba(139, 92, 246, 0.2);
+            color: var(--primary);
+        }
+
+        .inquiry-badge.design {
+            background: rgba(6, 182, 212, 0.1);
+            border-color: rgba(6, 182, 212, 0.2);
+            color: var(--secondary);
+        }
+
+        .inquiry-details {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            background: rgba(7, 10, 19, 0.5);
+            padding: 1rem;
+            border-radius: var(--radius-sm);
+            border-left: 3px solid var(--primary);
+            margin-bottom: 1rem;
+            white-space: pre-line;
+            max-height: 150px;
+            overflow-y: auto;
+        }
+
+        .inquiry-actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 1rem;
+        }
+
+        .btn-action {
+            background: transparent;
+            border: 1px solid var(--border-color);
+            color: var(--text-muted);
+            padding: 0.4rem 0.8rem;
+            font-size: 0.8rem;
+            border-radius: 6px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            transition: var(--transition-smooth);
+        }
+
+        .btn-action.delete:hover {
+            color: #ef4444;
+            border-color: rgba(239, 68, 68, 0.3);
+            background: rgba(239, 68, 68, 0.05);
+        }
+
+        .btn-action.copy:hover {
+            color: #fff;
+            border-color: var(--secondary);
+            background: rgba(6, 182, 212, 0.05);
+        }
+
+        /* Settings and quick actions */
+        .sidebar-panel {
+            padding: 2.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            height: fit-content;
+        }
+
+        .sidebar-section h3 {
+            font-size: 1.15rem;
+            color: #fff;
+            margin-bottom: 1rem;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 0.5rem;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 4rem 2rem;
+            color: var(--text-muted);
+        }
+
+        .empty-state i {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            opacity: 0.5;
+        }
+
+        /* Admin Navbar Override */
+        .admin-nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 100;
+            background: rgba(7, 10, 19, 0.85);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .admin-nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 80px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .nav-admin-title {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--secondary);
+            background: rgba(6, 182, 212, 0.1);
+            border: 1px solid rgba(6, 182, 212, 0.2);
+            padding: 0.25rem 0.75rem;
+            border-radius: 50px;
+            margin-left: 1rem;
+        }
+    </style>
+</head>
+<body class="admin-body">
+
+    <!-- Ambient BG -->
+    <div class="ambient-bg">
+        <div class="glow-blob glow-1"></div>
+        <div class="glow-blob glow-2"></div>
+        <div class="glow-blob glow-3"></div>
+    </div>
+
+    <!-- Login Screen -->
+    <div class="glass-container login-card" id="login-screen">
+        <a href="index.html" class="logo-link" style="justify-content: center; margin-bottom: 2rem;">
+            <img src="assets/KD labs logo.jpeg" alt="KD Software Labs Logo" class="brand-logo" style="height: 80px; filter: invert(1) hue-rotate(180deg); mix-blend-mode: screen;">
+        </a>
+        <h2>Admin Dashboard</h2>
+        <p>Access submitted ideas, quotes, and website settings</p>
+        
+        <form id="admin-login-form">
+            <div class="form-group" style="text-align: left;">
+                <label for="admin-email">Admin Email</label>
+                <input type="email" class="form-control" id="admin-email" placeholder="admin@kdsoftwarelabs.com" required autofocus>
+            </div>
+            <div class="form-group" style="text-align: left;">
+                <label for="admin-password">Admin Password</label>
+                <input type="password" class="form-control" id="admin-password" placeholder="••••••••" required>
+                <div id="login-error" style="color: #ef4444; font-size: 0.85rem; margin-top: 0.5rem; display: none;">Invalid credentials.</div>
+            </div>
+            <button type="submit" class="cta-btn" style="width: 100%; margin-top: 1rem;">Unlock Console</button>
+        </form>
+        <p style="margin-top: 1.5rem; font-size: 0.85rem; color: var(--text-muted);">New administrator? <a href="register.html" style="color: var(--secondary); text-decoration: none; font-weight: 500;">Register Account</a></p>
+    </div>
+
+    <!-- Dashboard Header Navbar -->
+    <nav class="admin-nav" id="admin-navbar" style="display: none;">
+        <div class="admin-nav-container">
+            <div style="display: flex; align-items: center;">
+                <a href="index.html" class="logo-link">
+                    <img src="assets/KD labs logo.jpeg" alt="KD Software Labs Logo" class="brand-logo" style="height: 60px; filter: invert(1) hue-rotate(180deg); mix-blend-mode: screen;">
+                </a>
+                <span class="nav-admin-title">ADMIN HUB</span>
+            </div>
+            <button id="btn-logout" class="btn-secondary" style="padding: 0.5rem 1.25rem; font-size: 0.85rem; cursor: pointer;">Logout</button>
+        </div>
+    </nav>
+
+    <!-- Admin Dashboard Main Layout -->
+    <div class="admin-dashboard-layout" id="dashboard-layout">
+        <!-- Stats Summary row -->
+        <div class="admin-stats-grid">
+            <div class="glass-container stat-card">
+                <div class="stat-card-icon">
+                    <i data-lucide="inbox"></i>
+                </div>
+                <div class="stat-card-info">
+                    <h3 id="stat-count">0</h3>
+                    <p>Total Inquiries</p>
+                </div>
+            </div>
+            <div class="glass-container stat-card">
+                <div class="stat-card-icon">
+                    <i data-lucide="indian-rupee"></i>
+                </div>
+                <div class="stat-card-info">
+                    <h3 id="stat-pipeline">₹0</h3>
+                    <p>Estimated Pipeline</p>
+                </div>
+            </div>
+            <div class="glass-container stat-card">
+                <div class="stat-card-icon">
+                    <i data-lucide="trending-up"></i>
+                </div>
+                <div class="stat-card-info">
+                    <h3 id="stat-avg">₹0</h3>
+                    <p>Average Budget</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contents layout -->
+        <div class="admin-content-grid">
+            <!-- Left panel: Inquiries list -->
+            <div class="glass-container submissions-panel">
+                <div class="panel-header">
+                    <h2>Customer Project Briefs</h2>
+                    <div style="display: flex; gap: 0.75rem;">
+                        <button class="btn-action" id="btn-export-json" title="Export database to JSON"><i data-lucide="download"></i> Export</button>
+                        <button class="btn-action delete" id="btn-clear-all" title="Clear all submission history"><i data-lucide="trash-2"></i> Clear Database</button>
+                    </div>
+                </div>
+
+                <div class="inquiries-list" id="inquiries-list">
+                    <!-- Dynamic client inquiry elements load here -->
+                </div>
+            </div>
+
+            <!-- Right panel: Settings & Controls -->
+            <div style="display: flex; flex-direction: column; gap: 2rem;">
+                <div class="glass-container sidebar-panel">
+                    <div class="sidebar-section">
+                        <h3>Notification Settings</h3>
+                        <div class="form-group">
+                            <label for="setting-access-key" style="font-size: 0.85rem;">Web3Forms Access Key</label>
+                            <input type="text" class="form-control" id="setting-access-key" style="font-size: 0.85rem;" placeholder="e.g. 5d54-ff9-a4a1-37e4042d71c1">
+                            <p style="font-size: 0.75rem; color: var(--text-muted); margin-top: 0.5rem;">Updating this key syncs it automatically with the main customer inquiry form.</p>
+                        </div>
+                        <button id="btn-save-settings" class="cta-btn" style="width: 100%; padding: 0.6rem; font-size: 0.85rem; border-radius: 8px;">Save Settings</button>
+                    </div>
+                </div>
+
+                <div class="glass-container sidebar-panel">
+                    <div class="sidebar-section">
+                        <h3>Developer Utilities</h3>
+                        <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 1rem;">Need sample data for visual tests or debugging?</p>
+                        <button id="btn-seed-data" class="btn-secondary" style="width: 100%; padding: 0.6rem; font-size: 0.85rem; border-radius: 8px; cursor: pointer;">Seed Sample Briefs</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Firebase SDK Compat Core & Services -->
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
+    <!-- Firebase Config -->
+    <script src="firebase-config.js"></script>
+    <!-- Script Operations -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            if (typeof lucide !== 'undefined') {
+                lucide.createIcons();
+            }
+
+            // Authentication logic
+            const loginForm = document.getElementById('admin-login-form');
+            const loginScreen = document.getElementById('login-screen');
+            const dashboardLayout = document.getElementById('dashboard-layout');
+            const adminNavbar = document.getElementById('admin-navbar');
+            const loginError = document.getElementById('login-error');
+            const emailInput = document.getElementById('admin-email');
+            const passwordInput = document.getElementById('admin-password');
+
+            // Default credentials: admin123
+            const ADMIN_PASSWORD = "admin123";
+
+            loginForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const emailVal = emailInput.value.trim();
+                const inputVal = passwordInput.value.trim();
+
+                // If Firebase is active and Auth SDK is available, try logging in with Firebase
+                if (typeof isFirebaseActive !== 'undefined' && isFirebaseActive && auth) {
+                    auth.signInWithEmailAndPassword(emailVal, inputVal)
+                        .then(() => {
+                            sessionStorage.setItem('kd_admin_auth', 'true');
+                            showDashboard();
+                        })
+                        .catch(authErr => {
+                            console.warn("Firebase authentication failed. Trying local password fallback...", authErr);
+                            // Fallback to local credentials checking
+                            if (emailVal === 'admin@kdsoftwarelabs.com' && inputVal === ADMIN_PASSWORD) {
+                                sessionStorage.setItem('kd_admin_auth', 'true');
+                                showDashboard();
+                            } else {
+                                loginError.textContent = `Login Failed: ${authErr.message} (or try default email 'admin@kdsoftwarelabs.com' and password 'admin123')`;
+                                loginError.style.display = 'block';
+                                passwordInput.value = '';
+                                passwordInput.focus();
+                            }
+                        });
+                } else {
+                    // Local Simulation mode verification
+                    if (emailVal === 'admin@kdsoftwarelabs.com' && inputVal === ADMIN_PASSWORD) {
+                        sessionStorage.setItem('kd_admin_auth', 'true');
+                        showDashboard();
+                    } else {
+                        loginError.textContent = "Invalid credentials. Try email 'admin@kdsoftwarelabs.com' and password 'admin123'";
+                        loginError.style.display = 'block';
+                        passwordInput.value = '';
+                        passwordInput.focus();
+                    }
+                }
+            });
+
+            // Logout action
+            document.getElementById('btn-logout').addEventListener('click', () => {
+                sessionStorage.removeItem('kd_admin_auth');
+                if (typeof isFirebaseActive !== 'undefined' && isFirebaseActive && auth) {
+                    auth.signOut().finally(() => {
+                        window.location.reload();
+                    });
+                } else {
+                    window.location.reload();
+                }
+            });
+
+            // Check if already authenticated in session
+            if (sessionStorage.getItem('kd_admin_auth') === 'true') {
+                showDashboard();
+            }
+
+            function showDashboard() {
+                loginScreen.style.display = 'none';
+                dashboardLayout.style.display = 'block';
+                adminNavbar.style.display = 'block';
+                document.body.classList.remove('admin-body'); // removes centering style
+                document.body.style.paddingTop = '100px';
+                
+                // Initialize details and load data
+                loadDashboardData();
+            }
+
+            let unsubscribeSubmissions = null;
+
+            // Core Dashboard Render Logic
+            function loadDashboardData() {
+                const savedKey = localStorage.getItem('kd_web3forms_key') || 'cf9f261c-6bd7-4cf0-8282-599c01c52a34';
+                document.getElementById('setting-access-key').value = savedKey;
+
+                // If Firebase mode is active, fetch real-time listener from Firestore
+                if (typeof isFirebaseActive !== 'undefined' && isFirebaseActive && db) {
+                    // Unsubscribe previous observer if exists
+                    if (unsubscribeSubmissions) {
+                        unsubscribeSubmissions();
+                    }
+
+                    // Attach real-time listener
+                    unsubscribeSubmissions = db.collection("submissions")
+                        .orderBy("timestamp", "desc")
+                        .onSnapshot(snapshot => {
+                            const submissions = [];
+                            snapshot.forEach(doc => {
+                                submissions.push(doc.data());
+                            });
+                            renderSubmissions(submissions);
+                        }, err => {
+                            console.error("Firestore read error, reverting to localStorage:", err);
+                            const localSubmissions = JSON.parse(localStorage.getItem('kd_submissions') || '[]');
+                            renderSubmissions(localSubmissions);
+                        });
+                } else {
+                    // Offline / local fallback mode
+                    const submissions = JSON.parse(localStorage.getItem('kd_submissions') || '[]');
+                    renderSubmissions(submissions);
+                }
+            }
+
+            function renderSubmissions(submissions) {
+                const listContainer = document.getElementById('inquiries-list');
+                
+                // Load Stats calculations
+                calculateStats(submissions);
+
+                if (submissions.length === 0) {
+                    listContainer.innerHTML = `
+                        <div class="empty-state">
+                            <i data-lucide="clipboard-list"></i>
+                            <h3>No briefs received yet</h3>
+                            <p style="margin-top:0.5rem; font-size:0.9rem;">Submissions from the main website order form will appear here dynamically.</p>
+                        </div>
+                    `;
+                    lucide.createIcons();
+                    return;
+                }
+
+                // Render submissions
+                listContainer.innerHTML = '';
+                submissions.forEach(sub => {
+                    const card = document.createElement('div');
+                    card.className = 'inquiry-card';
+                    card.innerHTML = `
+                        <div class="inquiry-header">
+                            <div class="inquiry-client-info">
+                                <h4>${escapeHTML(sub.name)}</h4>
+                                <p>${escapeHTML(sub.email)}</p>
+                            </div>
+                            <div class="inquiry-meta">
+                                <div class="inquiry-budget">${escapeHTML(sub.budget)}</div>
+                                <div class="inquiry-date">${escapeHTML(sub.date)}</div>
+                            </div>
+                        </div>
+                        <div class="inquiry-badges">
+                            <span class="inquiry-badge type">${escapeHTML(sub.type)}</span>
+                            <span class="inquiry-badge design">${escapeHTML(sub.design)}</span>
+                            ${sub.features ? sub.features.split(', ').map(f => `<span class="inquiry-badge">${escapeHTML(f)}</span>`).join('') : ''}
+                        </div>
+                        <div class="inquiry-details">
+                            <strong>Project Idea:</strong><br>
+                            ${escapeHTML(sub.ideas)}
+                        </div>
+                        <div class="inquiry-actions">
+                            <button class="btn-action copy" onclick="copyEmail('${escapeHTML(sub.email)}')"><i data-lucide="mail"></i> Copy Email</button>
+                            <button class="btn-action delete" onclick="deleteSubmission('${sub.id}')"><i data-lucide="trash-2"></i> Delete</button>
+                        </div>
+                    `;
+                    listContainer.appendChild(card);
+                });
+
+                lucide.createIcons();
+            }
+
+            // Statistics computation logic
+            function calculateStats(submissions) {
+                const totalCount = submissions.length;
+                let pipelineSum = 0;
+
+                submissions.forEach(sub => {
+                    const parsedVal = parseInt(sub.budget.replace(/[^0-9]/g, ''), 10);
+                    if (!isNaN(parsedVal)) {
+                        pipelineSum += parsedVal;
+                    }
+                });
+
+                const averageVal = totalCount > 0 ? Math.round(pipelineSum / totalCount) : 0;
+
+                document.getElementById('stat-count').textContent = totalCount;
+                document.getElementById('stat-pipeline').textContent = '₹' + pipelineSum.toLocaleString('en-IN');
+                document.getElementById('stat-avg').textContent = '₹' + averageVal.toLocaleString('en-IN');
+            }
+
+            // HTML escape helper
+            function escapeHTML(str) {
+                if (!str) return '';
+                return str.replace(/[&<>'"]/g, 
+                    tag => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[tag] || tag)
+                );
+            }
+
+            // Copy Email action helper
+            window.copyEmail = function(email) {
+                navigator.clipboard.writeText(email).then(() => {
+                    alert('Client email copied to clipboard: ' + email);
+                }).catch(err => {
+                    console.error('Could not copy email:', err);
+                });
+            };
+
+            // Delete Inquiry helper
+            window.deleteSubmission = function(id) {
+                if (confirm('Are you sure you want to delete this project request?')) {
+                    if (typeof isFirebaseActive !== 'undefined' && isFirebaseActive && db) {
+                        db.collection("submissions").doc(id).delete()
+                            .catch(err => alert("Error deleting brief from Firebase: " + err.message));
+                    } else {
+                        let submissions = JSON.parse(localStorage.getItem('kd_submissions') || '[]');
+                        submissions = submissions.filter(sub => sub.id !== id);
+                        localStorage.setItem('kd_submissions', JSON.stringify(submissions));
+                        loadDashboardData();
+                    }
+                }
+            };
+
+            // Save Settings
+            document.getElementById('btn-save-settings').addEventListener('click', () => {
+                const keyInput = document.getElementById('setting-access-key').value.trim();
+                localStorage.setItem('kd_web3forms_key', keyInput);
+                alert('Notification key saved successfully! The customer contact planner will use this key for submissions.');
+            });
+
+            // Export to JSON file
+            document.getElementById('btn-export-json').addEventListener('click', () => {
+                let submissions = '[]';
+                
+                if (typeof isFirebaseActive !== 'undefined' && isFirebaseActive && db) {
+                    // Export current loaded state from database
+                    db.collection("submissions").orderBy("timestamp", "desc").get().then(snapshot => {
+                        const items = [];
+                        snapshot.forEach(doc => items.push(doc.data()));
+                        triggerDownload(JSON.stringify(items));
+                    }).catch(err => alert("Failed to fetch database for export: " + err.message));
+                } else {
+                    submissions = localStorage.getItem('kd_submissions') || '[]';
+                    triggerDownload(submissions);
+                }
+            });
+
+            function triggerDownload(contentString) {
+                const blob = new Blob([contentString], { type: 'application/json' });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = `kd_submissions_export_${Date.now()}.json`;
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                URL.revokeObjectURL(url);
+            }
+
+            // Clear database
+            document.getElementById('btn-clear-all').addEventListener('click', () => {
+                if (confirm('⚠️ WARNING: This will permanently delete all inquiry records from the dashboard. Do you want to proceed?')) {
+                    if (typeof isFirebaseActive !== 'undefined' && isFirebaseActive && db) {
+                        db.collection("submissions").get().then(snapshot => {
+                            const batch = db.batch();
+                            snapshot.forEach(doc => {
+                                batch.delete(doc.ref);
+                            });
+                            return batch.commit();
+                        })
+                        .then(() => alert("Cleared all records from Firebase Firestore successfully."))
+                        .catch(err => alert("Failed to clear Firebase Database: " + err.message));
+                    } else {
+                        localStorage.removeItem('kd_submissions');
+                        loadDashboardData();
+                        alert("Cleared local storage logs.");
+                    }
+                }
+            });
+
+            // Seed Mock Data helper
+            document.getElementById('btn-seed-data').addEventListener('click', () => {
+                const mockBriefs = [
+                    {
+                        id: 'SUB-MOCK-1',
+                        date: new Date(Date.now() - 1000 * 60 * 60 * 5).toLocaleString('en-IN'), // 5 hours ago
+                        name: 'Rohan Sharma',
+                        email: 'rohan.sharma@creativeventures.in',
+                        type: 'Landing Page',
+                        budget: '₹8,500',
+                        design: 'Minimalist & Clean',
+                        features: 'CMS Integration, Custom Animations',
+                        ideas: 'We need a highly polished landing page for our organic tea business. The key highlight should be custom animations of tea leaves drifting down when scrolling. We also want a basic CMS to upload reviews and tea flavors.',
+                        timestamp: Date.now() - 1000 * 60 * 60 * 5
+                    },
+                    {
+                        id: 'SUB-MOCK-2',
+                        date: new Date(Date.now() - 1000 * 60 * 60 * 24).toLocaleString('en-IN'), // 1 day ago
+                        name: 'Priyanka Reddy',
+                        email: 'priyanka@voguefits.com',
+                        type: 'E-commerce',
+                        budget: '₹22,000',
+                        design: 'Bold & Colorful',
+                        features: 'User Authentication, Database/Storage, Custom Animations',
+                        ideas: 'We are launching a designer clothing line and need a webstore. The design must be bold, flashy, and vibrant with animated transitions between item cards. We need secure user login, a shopping cart, and database integration to track product stock.',
+                        timestamp: Date.now() - 1000 * 60 * 60 * 24
+                    },
+                    {
+                        id: 'SUB-MOCK-3',
+                        date: new Date(Date.now() - 1000 * 60 * 60 * 48).toLocaleString('en-IN'), // 2 days ago
+                        name: 'Amit Patel',
+                        email: 'apatel@novasolutions.org',
+                        type: 'Custom Web App',
+                        budget: '₹30,000+',
+                        design: 'Dark & Futuristic',
+                        features: 'User Authentication, Database/Storage',
+                        ideas: 'We are looking to develop a secure client scheduling and file sharing board. Clients should be able to log in, see a checklist of documents, upload files, and message our project staff. The portal must follow a sleek, dark glassmorphism theme.',
+                        timestamp: Date.now() - 1000 * 60 * 60 * 48
+                    }
+                ];
+
+                if (typeof isFirebaseActive !== 'undefined' && isFirebaseActive && db) {
+                    const batch = db.batch();
+                    mockBriefs.forEach(brief => {
+                        const docRef = db.collection("submissions").doc(brief.id);
+                        batch.set(docRef, brief);
+                    });
+                    batch.commit()
+                        .then(() => alert('Mock briefs uploaded to Firebase Firestore successfully!'))
+                        .catch(err => alert('Failed to seed Firebase Firestore: ' + err.message));
+                } else {
+                    const existing = JSON.parse(localStorage.getItem('kd_submissions') || '[]');
+                    const combined = [...mockBriefs, ...existing];
+                    localStorage.setItem('kd_submissions', JSON.stringify(combined));
+                    loadDashboardData();
+                    alert('Mock briefs seeded locally successfully! You can now test the admin panel elements.');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

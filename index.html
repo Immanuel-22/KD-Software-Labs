@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KD Software Labs | Custom Web App Development & Premium Design</title>
+    <meta name="description" content="We build stunning, custom-tailored websites and web applications. Submit your project requirements to get an instant quote and start collaborating with us.">
+    <!-- CSS Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+    <!-- Lucide Icons (Premium vector icons) -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+
+    <!-- Ambient Background Lighting -->
+    <div class="ambient-bg">
+        <div class="glow-blob glow-1"></div>
+        <div class="glow-blob glow-2"></div>
+        <div class="glow-blob glow-3"></div>
+    </div>
+
+    <!-- Navigation Header -->
+    <header>
+        <div class="container nav-container">
+            <a href="#" class="logo-link">
+                <img src="assets/KD labs logo.jpeg" alt="KD Software Labs Logo" class="brand-logo">
+            </a>
+            <ul class="nav-links" id="nav-links">
+                <li><a href="#" class="active" id="nav-home">Home</a></li>
+                <li><a href="#services" id="nav-services">Services</a></li>
+                <li><a href="#about" id="nav-about">About Us</a></li>
+                <li><a href="#showcase" id="nav-showcase">Our Work</a></li>
+                <li><a href="#planner" id="nav-planner-link">Start Project</a></li>
+            </ul>
+            <div style="display: flex; align-items: center; gap: 1rem;">
+                <a href="#planner" class="cta-btn">Get a Quote</a>
+                <div class="mobile-toggle" id="mobile-toggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero container" id="home">
+        <div class="hero-grid">
+            <div class="hero-content">
+                <div class="hero-badge">
+                    <i data-lucide="sparkles" style="width: 14px; height: 14px;"></i>
+                    Crafting Next-Gen Digital Experiences
+                </div>
+                <h1>We Build Websites that <span class="text-gradient">Stand Out</span></h1>
+                <p>KD Software Labs is a custom development boutique. We translate your ambitious ideas into highly optimized, visually stunning, and responsive websites designed to grow your business.</p>
+                <div class="hero-buttons">
+                    <a href="#planner" class="cta-btn">Start Your Project</a>
+                    <a href="#services" class="btn-secondary">Explore Services</a>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="hero-img-wrapper">
+                    <!-- Premium Generated Dashboard Mockup -->
+                    <img src="assets/hero.png" alt="KD Software Labs Premium Dashboard Mockup" id="hero-image">
+                </div>
+                <div class="glass-container hero-stat-card">
+                    <div class="stat-icon">
+                        <i data-lucide="check-circle-2"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h4>100%</h4>
+                        <p>Tailored Solutions</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="section container" id="services">
+        <h2 class="section-title">What We Do</h2>
+        <p class="section-subtitle">We don't do cookie-cutter templates. We design and program everything from scratch to match your brand's unique identity.</p>
+        
+        <div class="services-grid">
+            <!-- Service 1 -->
+            <div class="glass-container service-card">
+                <div class="service-icon">
+                    <i data-lucide="layout"></i>
+                </div>
+                <h3>Web Applications</h3>
+                <p>High-performance single page apps (SPAs), SaaS interfaces, and custom dashboards built using modern tech stacks.</p>
+            </div>
+            <!-- Service 2 -->
+            <div class="glass-container service-card">
+                <div class="service-icon">
+                    <i data-lucide="shopping-cart"></i>
+                </div>
+                <h3>E-Commerce</h3>
+                <p>Tailored store systems, smooth checkouts, and custom integrations to help you sell products without friction.</p>
+            </div>
+            <!-- Service 3 -->
+            <div class="glass-container service-card">
+                <div class="service-icon">
+                    <i data-lucide="smartphone"></i>
+                </div>
+                <h3>Responsive Design</h3>
+                <p>Gorgeous layouts designed pixel-perfectly for mobile, tablets, and massive desktop screens alike.</p>
+            </div>
+            <!-- Service 4 -->
+            <div class="glass-container service-card">
+                <div class="service-icon">
+                    <i data-lucide="zap"></i>
+                </div>
+                <h3>Speed & SEO</h3>
+                <p>Lightning fast load times and clean SEO architecture to rank high and retain every visiting customer.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Us Section -->
+    <section class="section container" id="about">
+        <div class="about-grid">
+            <div class="about-content">
+                <h2 class="section-title" style="text-align: left; margin-bottom: 2rem;">Two Minds, Infinite Solutions</h2>
+                <p style="color: var(--text-muted); margin-bottom: 1.5rem; font-size: 1.05rem;">
+                    We are two dedicated developers and designers who decided to merge our skills under **KD Software Labs**. We became frustrated with standard, slow page-builders that produce bloated sites.
+                </p>
+                <p style="color: var(--text-muted); margin-bottom: 2rem; font-size: 1.05rem;">
+                    Instead, we build modern websites using clean code, state-of-the-art layout engines, and dynamic logic. We deal directly with you—meaning no bloated agency pricing and no developer-client communication gaps.
+                </p>
+                <div class="about-features">
+                    <div class="about-item">
+                        <div class="about-num">01</div>
+                        <div class="about-item-info">
+                            <h4>Direct Collaborations</h4>
+                            <p>You speak directly to the creators of your website, ensuring every detail is implemented exactly as planned.</p>
+                        </div>
+                    </div>
+                    <div class="about-item">
+                        <div class="about-num">02</div>
+                        <div class="about-item-info">
+                            <h4>Optimized Performance</h4>
+                            <p>Every website undergoes strict load speed and search engine readiness auditing before launch.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="about-stats" style="display: flex; flex-direction: column; gap: 1.5rem;">
+                <div class="glass-container" style="padding: 2.5rem; text-align: center;">
+                    <h3 style="font-size: 3rem; color: var(--primary); margin-bottom: 0.5rem;">24-48h</h3>
+                    <p style="color: var(--text-main); font-weight: 600;">Response Turnaround</p>
+                    <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 0.5rem;">We reply rapidly with initial wireframes and detailed project outlines.</p>
+                </div>
+                <div class="glass-container" style="padding: 2.5rem; text-align: center;">
+                    <h3 style="font-size: 3rem; color: var(--secondary); margin-bottom: 0.5rem;">Custom</h3>
+                    <p style="color: var(--text-main); font-weight: 600;">Development from Scratch</p>
+                    <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 0.5rem;">No WordPress templates, no heavy page builders. Just raw speed and custom styles.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Work / Showcase Section -->
+    <section class="section container" id="showcase">
+        <h2 class="section-title">Our Project Previews</h2>
+        <p class="section-subtitle">A look into some of the conceptual and production layouts crafted by KD Software Labs.</p>
+        
+        <div class="projects-grid">
+            <!-- Project 1 -->
+            <div class="glass-container project-card">
+                <div class="project-img-container">
+                    <img src="assets/hero.png" alt="Apex Fintech Dashboard">
+                    <div class="project-overlay">
+                        <div class="project-tags">
+                            <span>SaaS</span>
+                            <span>FinTech</span>
+                        </div>
+                        <h3>Apex Analytics</h3>
+                        <p>A high-performance charting dashboard for secure financial transactions.</p>
+                        <a href="#planner" class="project-link">Inquire Similar Project <i data-lucide="arrow-right" style="width: 16px; height: 16px;"></i></a>
+                    </div>
+                </div>
+            </div>
+            <!-- Project 2 -->
+            <div class="glass-container project-card">
+                <div class="project-img-container">
+                    <img src="assets/hero.png" alt="Volt E-commerce Platform" style="filter: hue-rotate(90deg);">
+                    <div class="project-overlay">
+                        <div class="project-tags">
+                            <span>E-Commerce</span>
+                            <span>Web3</span>
+                        </div>
+                        <h3>Volt Marketplace</h3>
+                        <p>Next-generation store with integrated payment systems and custom animations.</p>
+                        <a href="#planner" class="project-link">Inquire Similar Project <i data-lucide="arrow-right" style="width: 16px; height: 16px;"></i></a>
+                    </div>
+                </div>
+            </div>
+            <!-- Project 3 -->
+            <div class="glass-container project-card">
+                <div class="project-img-container">
+                    <img src="assets/hero.png" alt="Aether Real Estate" style="filter: hue-rotate(270deg);">
+                    <div class="project-overlay">
+                        <div class="project-tags">
+                            <span>Interactive Map</span>
+                            <span>Premium Listing</span>
+                        </div>
+                        <h3>Aether Estates</h3>
+                        <p>Immersive luxury property listing with rich visual filters and CRM integration.</p>
+                        <a href="#planner" class="project-link">Inquire Similar Project <i data-lucide="arrow-right" style="width: 16px; height: 16px;"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Project Planner / Contact Section -->
+    <section class="section container" id="planner">
+        <h2 class="section-title">Start Your Project</h2>
+        <p class="section-subtitle">Use our interactive planner to specify your project. We'll receive a detailed email summary and get in touch within 24 hours.</p>
+
+        <div class="glass-container planner-card">
+            <!-- Progress Bar -->
+            <div class="progress-bar-container">
+                <div class="progress-line" id="progress-line"></div>
+                <div class="progress-step active" data-step="1">1</div>
+                <div class="progress-step" data-step="2">2</div>
+                <div class="progress-step" data-step="3">3</div>
+            </div>
+
+            <!-- Project Inquiry Form -->
+            <form id="project-planner-form">
+                <!-- Step 1: Project Scope -->
+                <div class="form-step active" id="step-1">
+                    <div class="planner-header">
+                        <h3>Tell us about the project scope</h3>
+                        <p style="color: var(--text-muted); font-size: 0.9rem;">What are we building together?</p>
+                    </div>
+
+                    <div class="form-group">
+                        <label>What type of website is this?</label>
+                        <div class="options-grid">
+                            <label class="option-card">
+                                <input type="radio" name="project_type" value="Landing Page" checked>
+                                <div class="option-content">
+                                    <i data-lucide="layers"></i>
+                                    <span>Landing Page</span>
+                                </div>
+                            </label>
+                            <label class="option-card">
+                                <input type="radio" name="project_type" value="E-commerce">
+                                <div class="option-content">
+                                    <i data-lucide="shopping-bag"></i>
+                                    <span>E-commerce</span>
+                                </div>
+                            </label>
+                            <label class="option-card">
+                                <input type="radio" name="project_type" value="Custom Web App">
+                                <div class="option-content">
+                                    <i data-lucide="cpu"></i>
+                                    <span>Custom Web App</span>
+                                </div>
+                            </label>
+                            <label class="option-card">
+                                <input type="radio" name="project_type" value="Corporate/Other">
+                                <div class="option-content">
+                                    <i data-lucide="globe"></i>
+                                    <span>Corporate Site</span>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>What is your estimated budget?</label>
+                        <div class="range-container">
+                            <input type="range" class="range-slider" id="budget-slider" name="budget" min="7000" max="30000" step="500" value="15000">
+                            <div class="budget-val-display" id="budget-display">₹15,000</div>
+                            <div class="range-values">
+                                <span>₹7,000</span>
+                                <span>₹30,000+</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 2: Features & Aesthetics -->
+                <div class="form-step" id="step-2">
+                    <div class="planner-header">
+                        <h3>Features & Styling Preferences</h3>
+                        <p style="color: var(--text-muted); font-size: 0.9rem;">Select your desired functionalities and look.</p>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Select key features you need:</label>
+                        <div class="options-grid">
+                            <label class="option-card">
+                                <input type="checkbox" name="features" value="User Authentication">
+                                <div class="option-content">
+                                    <i data-lucide="lock"></i>
+                                    <span>User Login</span>
+                                </div>
+                            </label>
+                            <label class="option-card">
+                                <input type="checkbox" name="features" value="CMS Integration">
+                                <div class="option-content">
+                                    <i data-lucide="file-edit"></i>
+                                    <span>Blog/CMS</span>
+                                </div>
+                            </label>
+                            <label class="option-card">
+                                <input type="checkbox" name="features" value="Database/Storage">
+                                <div class="option-content">
+                                    <i data-lucide="database"></i>
+                                    <span>Database</span>
+                                </div>
+                            </label>
+                            <label class="option-card">
+                                <input type="checkbox" name="features" value="Custom Animations">
+                                <div class="option-content">
+                                    <i data-lucide="wand-2"></i>
+                                    <span>Animations</span>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>What is your design preference?</label>
+                        <div class="options-grid">
+                            <label class="option-card">
+                                <input type="radio" name="design_style" value="Minimalist & Clean" checked>
+                                <div class="option-content">
+                                    <i data-lucide="feather"></i>
+                                    <span>Minimalist</span>
+                                </div>
+                            </label>
+                            <label class="option-card">
+                                <input type="radio" name="design_style" value="Dark & Futuristic">
+                                <div class="option-content">
+                                    <i data-lucide="moon"></i>
+                                    <span>Futuristic Dark</span>
+                                </div>
+                            </label>
+                            <label class="option-card">
+                                <input type="radio" name="design_style" value="Bold & Colorful">
+                                <div class="option-content">
+                                    <i data-lucide="palette"></i>
+                                    <span>Bold & Vibrant</span>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 3: Ideas & Contact Info -->
+                <div class="form-step" id="step-3">
+                    <div class="planner-header">
+                        <h3>Tell us your ideas & info</h3>
+                        <p style="color: var(--text-muted); font-size: 0.9rem;">Submit your description and email.</p>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="project_ideas">Briefly describe your goals & ideas:</label>
+                        <textarea class="form-control" id="project_ideas" name="project_ideas" placeholder="e.g., We want a portfolio website for our architecture firm that shows our blueprint mockups in a slider... " required></textarea>
+                    </div>
+
+                    <div class="input-grid">
+                        <div class="form-group">
+                            <label for="client_name">Your Name</label>
+                            <input type="text" class="form-control" id="client_name" name="client_name" placeholder="John Doe" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="client_email">Your Email</label>
+                            <input type="email" class="form-control" id="client_email" name="client_email" placeholder="john@example.com" required>
+                        </div>
+                    </div>
+
+                    <!-- Custom Config Drawer for KD Labs Notification Key -->
+                    <div class="settings-info">
+                        <i data-lucide="info"></i>
+                        <div>
+                            <strong>Developer Configuration:</strong>
+                            <p style="margin-top: 0.25rem; font-size: 0.8rem; line-height: 1.4;">
+                                You can enter a free Web3Forms access key here to receive notifications. The key will be stored locally on your system. 
+                                <br>
+                                <input type="text" id="web3forms-key" class="form-control" style="padding: 0.4rem 0.8rem; font-size: 0.8rem; max-width: 320px; margin-top: 0.5rem;" placeholder="Paste Web3Forms Access Key here...">
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Form Controls Navigation -->
+                <div class="form-buttons">
+                    <button type="button" class="btn-back" id="btn-back" style="visibility: hidden;">Back</button>
+                    <button type="button" class="btn-next cta-btn" id="btn-next">Next Step</button>
+                    <button type="submit" class="btn-submit cta-btn" id="btn-submit" style="display: none;">Submit Idea</button>
+                </div>
+            </form>
+
+            <!-- Success screen, hidden initially -->
+            <div id="success-screen" class="success-wrapper" style="display: none;">
+                <div class="success-icon">
+                    <i data-lucide="check"></i>
+                </div>
+                <h4>Project Submission Received!</h4>
+                <p>Thanks for sharing your vision with us. We have received your layout outline and will email you within 24 hours to schedule an introductory video call.</p>
+                <button type="button" class="cta-btn" id="btn-reset-form">Submit Another Idea</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials / Social Proof -->
+    <section class="section container">
+        <h2 class="section-title">What Clients Say</h2>
+        <p class="section-subtitle">We partner with founders and business owners to deploy sites that look clean and load fast.</p>
+        
+        <div class="testimonials-grid">
+            <div class="glass-container testimonial-card">
+                <p class="testimonial-text">"KD Software Labs delivered our e-commerce platform 5 days ahead of schedule. The code is extremely clean, and our conversion rate went up by 18% due to the speed."</p>
+                <div class="testimonial-author">
+                    <div class="author-avatar">SH</div>
+                    <div class="author-name">
+                        <h4>Sarah Jenkins</h4>
+                        <p>CEO, Volt Wearables</p>
+                    </div>
+                </div>
+            </div>
+            <div class="glass-container testimonial-card">
+                <p class="testimonial-text">"Working with them was incredibly easy. No corporate fluff, no middle-men. They listened to our blueprint details and programmed a pixel-perfect listing tool."</p>
+                <div class="testimonial-author">
+                    <div class="author-avatar">MR</div>
+                    <div class="author-name">
+                        <h4>Marcus Vance</h4>
+                        <p>Founder, Aether Real Estate</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container footer-grid">
+            <div class="footer-about">
+                <a href="#" class="logo-link footer-logo-link">
+                    <img src="assets/KD labs logo.jpeg" alt="KD Software Labs Logo" class="brand-logo footer-brand-logo">
+                </a>
+                <p>Custom tailored websites and premium digital design, engineered from scratch with zero compromises.</p>
+                <div class="footer-socials">
+                    <a href="#" class="social-icon"><i data-lucide="github" style="width: 18px; height: 18px;"></i></a>
+                    <a href="#" class="social-icon"><i data-lucide="twitter" style="width: 18px; height: 18px;"></i></a>
+                    <a href="#" class="social-icon"><i data-lucide="linkedin" style="width: 18px; height: 18px;"></i></a>
+                </div>
+            </div>
+            <div class="footer-links">
+                <h4>Services</h4>
+                <ul>
+                    <li><a href="#services">Web Applications</a></li>
+                    <li><a href="#services">E-commerce Stores</a></li>
+                    <li><a href="#services">Landing Pages</a></li>
+                    <li><a href="#services">SEO Optimization</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>Company</h4>
+                <ul>
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#showcase">Our Showcase</a></li>
+                    <li><a href="#planner">Start Project</a></li>
+                    <li><a href="admin.html" target="_blank"><i data-lucide="shield-check" style="display:inline-block; width: 14px; height: 14px; vertical-align: middle; margin-right: 0.3rem;"></i>Admin Hub</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>Contact</h4>
+                <ul style="color: var(--text-muted); font-size: 0.9rem;">
+                    <li style="margin-bottom: 0.5rem;"><i data-lucide="mail" style="display:inline-block; width: 14px; height: 14px; vertical-align: middle; margin-right: 0.5rem;"></i>info@kdsoftwarelabs.com</li>
+                    <li><i data-lucide="clock" style="display:inline-block; width: 14px; height: 14px; vertical-align: middle; margin-right: 0.5rem;"></i>24/7 Response Desk</li>
+                </ul>
+            </div>
+        </div>
+        <div class="container footer-bottom">
+            <p>&copy; 2026 KD Software Labs. All rights reserved.</p>
+            <p>Designed & Programmed with custom styles.</p>
+        </div>
+    </footer>
+
+    <!-- Firebase SDK Compat Core & Services -->
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
+    <!-- Firebase Config -->
+    <script src="firebase-config.js"></script>
+    <!-- JavaScript Logic -->
+    <script src="app.js"></script>
+</body>
+</html>
