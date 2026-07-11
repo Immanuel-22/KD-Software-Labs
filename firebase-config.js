@@ -1,4 +1,4 @@
-/*// Firebase Configuration for KD Software Labs
+// Firebase Configuration for KD Software Labs
 const firebaseConfig = {
     apiKey: "AIzaSyAwcMDSU2BYSrtNgY2jFq_IGvqDu4XcC_Q",
     authDomain: "kd-software-labs.firebaseapp.com",
@@ -26,43 +26,9 @@ if (typeof firebase !== 'undefined') {
             console.error("❌ Failed to initialize Firebase:", err);
         }
     }
-}*/
+}
 
 
 
 
-/*// Import the functions you need from the SDKs you need
-import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
 
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
-const firebaseConfig = {
-    apiKey: "AIzaSyAwcMDSU2BYSrtNgY2jFq_IGvqDu4XcC_Q",
-    authDomain: "kd-software-labs.firebaseapp.com",
-    projectId: "kd-software-labs",
-    storageBucket: "kd-software-labs.firebasestorage.app",
-    messagingSenderId: "768005828492",
-    appId: "1:768005828492:web:5c07c720607e9ed702f0a9",
-    measurementId: "G-J1LSHX3DL8"
-};
-
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);*/
-
-
-
-
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
-const firebaseConfig = {
-    apiKey: "AIzaSyAwcMDSU2BYSrtNgY2jFq_IGvqDu4XcC_Q",
-    authDomain: "kd-software-labs.firebaseapp.com",
-    projectId: "kd-software-labs",
-    storageBucket: "kd-software-labs.firebasestorage.app",
-    messagingSenderId: "768005828492",
-    appId: "1:768005828492:web:5c07c720607e9ed702f0a9",
-    measurementId: "G-J1LSHX3DL8"
-};
