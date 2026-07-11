@@ -472,7 +472,7 @@
                         .catch(authErr => {
                             console.warn("Firebase authentication failed. Trying local password fallback...", authErr);
                             // Fallback to local credentials checking
-                            if (emailVal === 'admin@kdsoftwarelabs.com' && inputVal === ADMIN_PASSWORD) {
+                            if (emailVal === 'derek05@gmail.com' && inputVal === ADMIN_PASSWORD) {
                                 sessionStorage.setItem('kd_admin_auth', 'true');
                                 showDashboard();
                             } else {
